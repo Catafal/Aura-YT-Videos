@@ -1,0 +1,48 @@
+{
+  "Negocio Desconocido": {
+    "informacion_empresa": {
+      "nombre": "El Nacional",
+      "descripcion": "Restaurante con distintos espacios donde podrás disfrutar de recetas tradicionales de la Península, elaboradas con productos de gran calidad y en un ambiente singular.",
+      "sector": "Restauración",
+      "año_fundacion": "No especificado"
+    },
+    "contacto": {
+      "email": "No especificado",
+      "telefono": "93 518 50 53",
+      "redes_sociales": {
+        "linkedin": "https://www.linkedin.com/company/el-nacional-bcn/?viewAsMember=true",
+        "twitter": "No especificado",
+        "instagram": "https://instagram.com/elnacionalbcn"
+      }
+    },
+    "ubicaciones": [
+      {
+        "tipo": "",
+        "direccion": {
+          "calle": "",
+          "ciudad": "",
+          "provincia": "",
+          "codigo_postal": ""
+        },
+        "horario_atencion": []
+      },
+      {
+        "tipo": "Restaurante",
+        "direccion": {
+          "calle": "Passeig de Gràcia, 24 bis",
+          "ciudad": "Barcelona",
+          "provincia": "Barcelona",
+          "codigo_postal": "08007"
+        },
+        "horario_atencion": [
+          {
+            "dia": "Cada día",
+            "hora_apertura": "12:00",
+            "hora_cierre": "01:00"
+          }
+        ]
+      }
+    ],
+    "informacion_adicional": "No especificado\nEl Nacional es un multi-espacio gastronómico que ofrece una variedad de opciones culinarias en sus restaurantes y barras especializadas.\nNo especificado"
+  }
+}

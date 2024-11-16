@@ -1,5 +1,7 @@
+# pip -m venv venv (para crear un entorno virtual)
+# source venv/bin/activate (para activar el entorno virtual)
 # pip install firecrawl-py groq (para instalar dependencias)
-# python onboarding-sample.py (para ejecutar el script)
+# python3 onboarding-sample.py (para ejecutar el script)
 
 import json
 import os
@@ -16,6 +18,7 @@ class AnalizadorWeb:
         Crea una instancia de FirecrawlApp y Groq con la clave API proporcionada.
         
         Es como preparar todo lo necesario antes de empezar a trabajar. 
+
         Por ejemplo:
 
         - Iniciar un coche: primero introduces la llave y enciendes el motor
@@ -198,48 +201,48 @@ class AnalizadorWeb:
 
         for diccionario_contenido in contenido_extraido:
             for nombre_empresa, detalles in diccionario_contenido.items():
-                # Combinar información de la empresa
+                
                 if detalles.get('informacion_empresa'):
                     for campo in ['nombre', 'descripcion', 'sector', 'año_fundacion']:
                         if detalles['informacion_empresa'].get(campo):
                             combinado[nombre_empresa]['informacion_empresa'][campo] = detalles['informacion_empresa'][campo]
 
-                # Combinar información de contacto
+                
                 if detalles.get('contacto'):
                     for campo in ['email', 'telefono']:
                         if detalles['contacto'].get(campo):
                             combinado[nombre_empresa]['contacto'][campo] = detalles['contacto'][campo]
                     
-                    # Combinar redes sociales
+                   
                     if detalles['contacto'].get('redes_sociales'):
                         for red in ['linkedin', 'twitter', 'instagram']:
                             if detalles['contacto']['redes_sociales'].get(red):
                                 combinado[nombre_empresa]['contacto']['redes_sociales'][red] = \
                                     detalles['contacto']['redes_sociales'][red]
 
-                # Combinar ubicaciones
+               
                 if detalles.get('ubicaciones'):
-                    # Si hay ubicaciones existentes, actualizamos o añadimos nuevas
+                   
                     ubicaciones_existentes = combinado[nombre_empresa]['ubicaciones']
                     for nueva_ubicacion in detalles['ubicaciones']:
-                        # Verificar si la ubicación ya existe (por ejemplo, por dirección)
+                       
                         ubicacion_encontrada = False
                         for i, ubicacion_existente in enumerate(ubicaciones_existentes):
                             if (ubicacion_existente['direccion']['calle'] == nueva_ubicacion['direccion']['calle'] and
                                 ubicacion_existente['direccion']['ciudad'] == nueva_ubicacion['direccion']['ciudad']):
-                                # Actualizar ubicación existente
+                                
                                 ubicaciones_existentes[i].update(nueva_ubicacion)
                                 ubicacion_encontrada = True
                                 break
                         
                         if not ubicacion_encontrada:
-                            # Añadir nueva ubicación
+                            
                             ubicaciones_existentes.append(nueva_ubicacion)
 
-                # Combinar información adicional
+                
                 if detalles.get('informacion_adicional'):
                     if combinado[nombre_empresa]['informacion_adicional']:
-                        # Si ya existe información, la concatenamos con la nueva
+                    
                         combinado[nombre_empresa]['informacion_adicional'] += "\n" + detalles['informacion_adicional']
                     else:
                         combinado[nombre_empresa]['informacion_adicional'] = detalles['informacion_adicional']
@@ -258,34 +261,34 @@ class AnalizadorWeb:
         return nombre_archivo
 
 def main():
-    # Cargar variables de entorno
+    
     load_dotenv()
 
-    # Inicializar con tus claves API
+    
     FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
     
     if not FIRECRAWL_API_KEY or not GROQ_API_KEY:
         raise ValueError("Por favor, configura las variables de entorno CLAVE_FIRECRAWL y CLAVE_GROQ")
 
-    # Crear instancia del analizador
+   
     analizador = AnalizadorWeb(FIRECRAWL_API_KEY, GROQ_API_KEY)
 
-    # Ejemplo de uso
-    url_objetivo = "https://www.gmedia.es"
     
-    # Extraer y rastrear
+    url_objetivo = "https://www.elnacionalbcn.com"
+    
+    
     analizador.extraer_url_individual(url_objetivo)
     analizador.rastrear_sitio_web(url_objetivo, limite=3)
     
-    # Procesar y extraer información
+    
     resultados = analizador.procesar_todo_contenido()
     
-    # Guardar resultados
+    
     archivo_salida = analizador.guardar_resultados(resultados)
     print(f"Resultados del análisis guardados en: {archivo_salida}")
     
-    # Imprimir resumen
+    
     print("\nResumen del Análisis:")
     for nombre_negocio, detalles in resultados.items():
         print(f"\nNegocio: {nombre_negocio}")
