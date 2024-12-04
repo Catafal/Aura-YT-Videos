@@ -1,3 +1,5 @@
+# pip -m venv venv (para crear un entorno virtual)
+# source venv/bin/activate (para activar el entorno virtual)
 # pip install openai python-dotenv agentql playwright && agentql init(para instalar las dependencias)
 # python yt-main-agent.py (para ejecutar el script)
 
@@ -9,6 +11,7 @@ from playwright.sync_api import sync_playwright
 
 # Initialize API client
 load_dotenv()
+
 XAI_API_KEY = os.getenv("XAI_API_KEY")
 client = OpenAI(
     api_key=XAI_API_KEY,
