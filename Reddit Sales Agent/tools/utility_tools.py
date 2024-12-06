@@ -1,12 +1,12 @@
+from crewai.tools import tool
 import time
-from langchain.tools import tool
 
 class UtilityTools:
-    @tool("Wait for certain amount of time")
-    def wait(mins):
-        """Wait for a certain amount of time"""
+    @staticmethod
+    @tool("Esperar cierta cantidad de tiempo")
+    def wait(mins: int) -> str:
+        """Esperar cierta cantidad de tiempo"""
         duration_in_seconds = mins * 60
         time.sleep(duration_in_seconds)
-        
-        print(f"Great, you've waited {mins} mins! Now proceed with your task.")
-        return f"Great, you've waited {mins} mins! Now proceed with your task."
+        print(f"¡Genial, has esperado {mins} minutos! Ahora continúa con tu tarea.")
+        return f"¡Genial, has esperado {mins} minutos! Ahora continúa con tu tarea."

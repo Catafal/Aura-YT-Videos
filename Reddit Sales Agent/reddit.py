@@ -7,29 +7,32 @@ from crewai import Crew, Process
 
 from agents import RedditAgents
 from tasks import RedditTasks
-from langchain.openai import ChatOpenAI
+from langchain_openai import OpenAI
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
-OpenAIGPT4 = ChatOpenAI(model="gpt-4")
+OpenAIGPT4 = OpenAI(model="gpt-4o-mini") #api_key=os.getenv("OPENAI_API_KEY")
 
 agents = RedditAgents()
 tasks = RedditTasks()
 
+
+
 things_to_promote = """
-AI YouTube channel (https://www.youtube.com/channel/UCrXSVX9a1mj810CMLwkGvMw), below are 3 of the most recent videos:
-1. How to build an AI sales agent that can outreach prospects, cold call them, and follow up on WhatsApp.
-2. How to reduce Large Language Model costs for your AI applications (When developing AI applications, LLM model optimization matters).
-3. How to build a universal web scraper to scrape websites with AI Agents.
+Canal de YouTube sobre IA (https://www.youtube.com/channel/UCrXSVX9a1mj810CMLwkGvMw), a continuación los 3 videos más recientes:
+1. Cómo construir un agente de ventas con IA que puede contactar prospectos, realizar llamadas en frío y hacer seguimiento por WhatsApp.
+2. Cómo reducir los costos de Modelos de Lenguaje Grande para tus aplicaciones de IA (Al desarrollar aplicaciones de IA, la optimización del modelo LLM es importante).
+3. Cómo construir un web scraper universal para extraer datos de sitios web con Agentes de IA.
 """
 
-# Setting up agents
+# Configuración de agentes
 reddit_post_finder = agents.reddit_post_finder()
 reddit_comment_writer = agents.reddit_comment_writer()
 reddit_comment_poster = agents.reddit_comment_poster()
 
-# Setting up tasks
+# Configuración de tareas
 search_recent_reddit_post_task = tasks.search_recent_reddit_post_task(
     reddit_post_finder, things_to_promote
 )
@@ -42,7 +45,7 @@ post_reddit_comment = tasks.post_reddit_comment(
     reddit_comment_poster, [draft_reddit_comment]
 )
 
-# Setting up tools
+# Configuración de herramientas
 crew = Crew(
     agents=[reddit_post_finder, reddit_comment_writer, reddit_comment_poster],
     tasks=[search_recent_reddit_post_task, draft_reddit_comment, post_reddit_comment],

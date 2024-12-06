@@ -1,21 +1,21 @@
-# Real Sales Agent (PRD)
+# Agente de Ventas Real (PRD)
 
-- Project overview
-    An agent that has the ability of doing marketing thorugh Reddit.
-    Post interesting ideas about trend topics related to a niche
-    Following agents need it:
-    - Reddit post finder 
-        search top 5 most relevant reddit post past hour
-    - Comment drafter
-        fetch reddit post content
-        draft comment
-    - Reply Guy
-        post reddit comment
-- Core functionalities
-    - Detect when someone post on reddit about certain topic
-    - Trigger an agent (which will add value with some relevant comment)
-    - Comment and plug product
-- Documentation
-    - Reddit API
-    - Grok API (openai sdk) o AutoGen (a little bit too technical)
+- Descripción general del proyecto
+    Un agente que tiene la capacidad de hacer marketing a través de Reddit.
+    Publicar ideas interesantes sobre temas tendencia relacionados con un nicho
+    Se necesitan los siguientes agentes:
+    - Buscador de publicaciones de Reddit
+        buscar las 5 publicaciones más relevantes de Reddit en la última hora
+    - Redactor de comentarios
+        obtener el contenido de la publicación de Reddit
+        redactar comentario
+    - Agente de respuestas
+        publicar comentario en Reddit
+- Funcionalidades principales
+    - Detectar cuando alguien publica en Reddit sobre cierto tema
+    - Activar un agente (que agregará valor con algún comentario relevante)
+    - Comentar y promocionar producto
+- Documentación
+    - API de Reddit
+    - API de Grok (openai sdk) o AutoGen (un poco demasiado técnico)
     - Crew AI
