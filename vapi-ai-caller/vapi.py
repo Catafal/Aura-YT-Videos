@@ -6,7 +6,7 @@ load_dotenv()
 
 url = "https://api.vapi.ai/call/phone"
 customer_name = "Jordi"
-sales_name = "David"
+sales_name = "Diego"
 
 
 payload = {
