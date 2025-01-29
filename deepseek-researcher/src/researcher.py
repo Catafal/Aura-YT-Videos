@@ -136,11 +136,50 @@ class ConsoleResearcher:
     
     def _generate_query(self, topic: str) -> str:
         """Generate a search query for the topic."""
-        result = self.llm_json.invoke([
-            SystemMessage(content=query_writer_instructions),
-            HumanMessage(content=f"Generate a detailed search query for: {topic}")
-        ])
-        return json.loads(result.content)['query']
+        try:
+            # Modify the prompt to be more explicit and structured
+            prompt = f"""Generate a search query for: {topic}
+
+Return ONLY a JSON object in this exact format:
+{{
+    "query": "your search query here",
+    "aspect": "aspect of the topic",
+    "rationale": "why this query will work"
+}}
+
+DO NOT include any other text, only the JSON object."""
+
+            result = self.llm_json.invoke([
+                SystemMessage(content=query_writer_instructions),
+                HumanMessage(content=prompt)
+            ])
+            
+            # Clean the response to ensure valid JSON
+            content = result.content.strip()
+            # Remove any potential markdown code block markers
+            content = content.replace('```json', '').replace('```', '').strip()
+            
+            # Parse JSON response
+            response_dict = json.loads(content)
+            
+            if 'query' not in response_dict:
+                print(f"Warning: Response missing query field: {content}")
+                return topic
+            
+            query = response_dict['query'].strip()
+            if not query:
+                print("Warning: Empty query generated")
+                return topic
+            
+            return query
+        
+        except json.JSONDecodeError as e:
+            print(f"Warning: JSON parsing error: {str(e)}")
+            print(f"Raw response: {result.content}")
+            return topic
+        except Exception as e:
+            print(f"Warning: Error generating query: {str(e)}")
+            return topic
     
     def _summarize_sources(self, topic: str, new_research: str, existing_summary: Optional[str]) -> str:
         """Summarize research results."""
