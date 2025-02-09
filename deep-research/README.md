@@ -33,8 +33,13 @@ python financial_research/main.py
 ## Estructura del proyecto
 
 financial_research/
+
 ├── agents/     # Definiciones de los agentes
+
 ├── tools/      # Herramientas de scraping
+
 ├── config/     # Configuraciones
+
 ├── main.py     # Aplicación principal
+
 └── requirements.txt
