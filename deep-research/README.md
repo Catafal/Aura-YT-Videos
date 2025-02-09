@@ -21,16 +21,20 @@ Este proyecto implementa un sistema multiagente para llevar a cabo investigacion
    ```
 
 ## Uso
-python -m venv .venv
+python -m venv .venv   
+
 source .venv/bin/activate
+
 pip install -r requirements.txt
+
 python financial_research/main.py
+
 
 ## Estructura del proyecto
 
 financial_research/
-├── agents/ # Agent definitions
-├── tools/ # Scraping tools
-├── config/ # Configuration settings
-├── main.py # Main application
+├── agents/     # Definiciones de los agentes
+├── tools/      # Herramientas de scraping
+├── config/     # Configuraciones
+├── main.py     # Aplicación principal
 └── requirements.txt
