@@ -30,7 +30,7 @@ class AnalystAgent:
             tools=tools,
             verbose=True,
             allow_delegation=True,
-            # llm=ChatOpenAI(model_name="gpt-3.5-turbo")
+            # llm=ChatOpenAI(model_name="o3-mini")
             llm= LLM(model="ollama/deepseek-r1:14b", base_url="http://localhost:11434")
         )
 

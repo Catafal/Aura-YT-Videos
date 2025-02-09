@@ -34,7 +34,7 @@ class ResearchAgent:
             tools=tools,
             verbose=True,
             allow_delegation=False,
-            llm=ChatOpenAI(model_name="gpt-3.5-turbo")
+            llm=ChatOpenAI(model_name="gpt-4o-mini")
         )
 
     def __init__(self):

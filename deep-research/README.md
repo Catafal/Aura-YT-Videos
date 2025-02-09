@@ -20,12 +20,12 @@ This project implements a multi-agent system for conducting financial market res
    ```
    SERPER_API_KEY=your_key_here
    TAVILY_API_KEY=your_key_here
-   APIFY_API_KEY=your_key_here
+   FIRECRAWL_API_KEY=your_key_here
    OPENAI_API_KEY=your_key_here
    ```
 
 ## Usage
-
+python financial_research/main.py
 
 ## Project Structure
 
