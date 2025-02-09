@@ -1,33 +1,32 @@
-# Financial Research Agent System
+# Sistema de Agentes de Investigación Financiera
 
-A CrewAI-based system for automated financial market research and analysis.
+Un sistema basado en CrewAI para la investigación y análisis automatizado del mercado financiero.
 
-## Overview
+## Descripción General
 
-This project implements a multi-agent system for conducting financial market research:
-- Researcher Agent: Gathers market data using various scraping tools
-- Analyst Agent: Interprets the gathered data and identifies key insights
-- Writer Agent: Creates comprehensive markdown reports
+Este proyecto implementa un sistema multiagente para llevar a cabo investigaciones en el mercado financiero:
+- **Agente Investigador:** Recopila datos del mercado utilizando diversas herramientas de scraping.
+- **Agente Analista:** Interpreta los datos recopilados e identifica ideas clave.
+- **Agente Redactor:** Crea informes completos en formato markdown.
 
-## Setup
+## Configuración
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+1. Clona el repositorio.
+2. Crea un archivo .env con tus claves de API:
    ```
-3. Create a `.env` file with your API keys:
-   ```
-   SERPER_API_KEY=your_key_here
-   TAVILY_API_KEY=your_key_here
-   FIRECRAWL_API_KEY=your_key_here
-   OPENAI_API_KEY=your_key_here
+   SERPER_API_KEY=tu_clave_aquí
+   TAVILY_API_KEY=tu_clave_aquí
+   APIFY_API_KEY=tu_clave_aquí
+   OPENAI_API_KEY=tu_clave_aquí
    ```
 
-## Usage
+## Uso
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 python financial_research/main.py
 
-## Project Structure
+## Estructura del proyecto
 
 financial_research/
 ├── agents/ # Agent definitions
